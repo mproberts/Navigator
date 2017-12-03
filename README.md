@@ -27,6 +27,8 @@ dependencies {
 
 ## Getting Started
 
+*See the [Demo Project](https://github.com/mproberts/rxdatabinding/tree/master/demo) on the [Rx Databinding](https://github.com/mproberts/rxdatabinding) library for a live example.*
+
 What we want to end up with is the simplest possible `Activity`. Our activities should only need to tell us what we want to use as our layout and what to bind to our layout. It's a simple mediator between our view and our view-model, taking the context information from the intent which spawned the activity and fetching the appropriate view-model.
 
 What we **will** end up with using Navigator is this:
