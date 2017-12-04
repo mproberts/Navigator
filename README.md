@@ -56,6 +56,22 @@ public class ProfileActivity extends AndroidBindingProfileActivity {
 }
 ```
 
+#### <code>activity_profile.xml</code>
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="model"
+            type="com.github.mproberts.rxdatabindingdemo.profile.vm.ProfileViewModel" />
+    </data>
+    <LinearLayout ...>
+        ...
+    </LinearLayout>
+</layout>
+```
+
 The activity is backed by a simple `ProfileViewModel`. It is a pure-Java interface using RxJava 2. The interface has one addition, a `Navigator` inner-interface. This interface will be consumed by other view-models who want to navigate **to** the profile.
 
 #### <code>ProfileViewModel.java</code>
