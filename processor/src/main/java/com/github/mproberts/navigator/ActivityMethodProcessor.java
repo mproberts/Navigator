@@ -1,4 +1,4 @@
-package com.github.mproberts.rxdatabinding.navigation;
+package com.github.mproberts.navigator;
 
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.CodeBlock;

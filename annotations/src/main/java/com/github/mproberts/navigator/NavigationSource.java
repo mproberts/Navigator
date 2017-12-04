@@ -1,4 +1,4 @@
-package com.github.mproberts.rxdatabinding.navigation;
+package com.github.mproberts.navigator;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

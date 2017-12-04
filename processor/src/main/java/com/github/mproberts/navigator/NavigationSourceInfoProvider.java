@@ -1,4 +1,4 @@
-package com.github.mproberts.rxdatabinding.navigation;
+package com.github.mproberts.navigator;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
