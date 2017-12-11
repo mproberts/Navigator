@@ -83,7 +83,7 @@ class NavigationSourceInfoProvider {
 
                     _viewModelTypeElements.put(navigationTypeName, outerClassName);
 
-                    return;
+                    break;
                 } catch (ClassNotFoundException e1) {
                     // ignored
                 }
