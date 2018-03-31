@@ -4,10 +4,12 @@ import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.CodeBlock;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -62,10 +64,17 @@ class ActivityMethodProcessor {
                 .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT);
 
         _activityBuilder.addField(ClassName.get("android.databinding", "ViewDataBinding"), "_binding", Modifier.PRIVATE);
+        _activityBuilder.addField(ParameterizedTypeName.get(ClassName.get(WeakReference.class), viewModelTypeName), "_viewModel", Modifier.PRIVATE);
+        _activityBuilder.addMethod(MethodSpec.methodBuilder("getViewModel")
+                .addModifiers(Modifier.PROTECTED)
+                .returns(viewModelTypeName)
+                .addStatement("return _viewModel == null ? null : _viewModel.get()")
+                .build());
         _activityBuilder.addMethod(MethodSpec.methodBuilder("handleIntent")
                 .addModifiers(Modifier.PRIVATE)
                 .addParameter(INTENT_TYPE_NAME, "intent")
-                .addStatement("Object viewModel = $T.intentTo$L(intent, this)", rootTypeName, viewModelClassName)
+                .addStatement("$T viewModel = $T.intentTo$L(intent, this)", viewModelTypeName, rootTypeName, viewModelClassName)
+                .addStatement("_viewModel = new WeakReference(viewModel)")
                 .addStatement("_binding.setVariable($L.model, viewModel)", _info.getBindingClassName())
                 .build());
         _activityBuilder.addMethod(MethodSpec.methodBuilder("getLayoutResource")
